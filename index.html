@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Krrish Thakur — Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+
+  /* ---------- tokens ---------- */
+  :root{
+    --paper: #16130F;
+    --paper-line: #382D20;
+    --ink: #F3ECDD;
+    --ink-soft: #AB9E86;
+    --steel: #5FCBB3;
+    --steel-deep: #3D9985;
+    --brass: #E8B34A;
+    --card: #201A13;
+    --card-hi: #241D15;
+    --radius: 3px;
+    --max: 780px;
+    --serif: "Newsreader", Georgia, serif;
+    --sans: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+    --mono: "IBM Plex Mono", monospace;
+  }
+
+  *{ box-sizing:border-box; }
+  html, body{ max-width:100%; overflow-x:hidden; }
+  html{ scroll-behavior:smooth; }
+
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+    *{ animation-duration:0.001ms !important; transition-duration:0.001ms !important; }
+  }
+
+  body{
+    margin:0;
+    background:
+      radial-gradient(1100px 620px at 12% -8%, rgba(232,179,74,0.07), transparent 60%),
+      radial-gradient(900px 700px at 100% 15%, rgba(95,203,179,0.06), transparent 55%),
+      var(--paper);
+    color:var(--ink);
+    font-family:var(--sans);
+    font-size:16px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  a{ color:inherit; }
+  :focus-visible{ outline:2px solid var(--steel); outline-offset:3px; }
+  ::selection{ background:var(--brass); color:#1B1611; }
+
+  .wrap{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:0 28px;
+  }
+
+  h1,h2,h3{
+    font-family:var(--serif);
+    font-weight:500;
+    margin:0;
+    letter-spacing:-0.01em;
+  }
+
+  section{
+    padding:88px 0;
+    border-bottom:1px solid var(--paper-line);
+  }
+  section:last-of-type{ border-bottom:none; }
+
+  .section-head{
+    display:flex;
+    align-items:baseline;
+    justify-content:space-between;
+    gap:24px;
+    margin-bottom:44px;
+  }
+  .section-num{
+    font-family:var(--mono);
+    font-size:13px;
+    color:var(--steel);
+    white-space:nowrap;
+  }
+  .section-head h2{
+    font-size:clamp(26px, 3.4vw, 34px);
+  }
+
+  /* ---------- nav ---------- */
+  header.site{
+    position:sticky;
+    top:0;
+    z-index:20;
+    background:rgba(22,19,15,0.86);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--paper-line);
+  }
+  .nav-inner{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:18px 28px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+  }
+  .logo{
+    font-family:var(--serif);
+    font-size:20px;
+    font-weight:600;
+    border:1px solid var(--ink);
+    width:38px;
+    height:38px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:50%;
+  }
+  nav.links{
+    display:flex;
+    gap:26px;
+    font-size:14px;
+  }
+  nav.links a{
+    text-decoration:none;
+    color:var(--ink-soft);
+    position:relative;
+    padding-bottom:3px;
+  }
+  nav.links a:hover{ color:var(--ink); }
+  .nav-toggle{
+    display:none;
+    background:none;
+    border:1px solid var(--ink);
+    width:38px;
+    height:38px;
+    border-radius:50%;
+    font-family:var(--mono);
+    font-size:12px;
+    cursor:pointer;
+    color:var(--ink);
+  }
+
+  /* ---------- hero ---------- */
+  .hero{
+    padding:96px 0 80px;
+    border-bottom:1px solid var(--paper-line);
+  }
+  .hero-grid{
+    display:grid;
+    grid-template-columns:1.3fr 0.9fr;
+    gap:48px;
+    align-items:start;
+  }
+  .tagline{
+    font-family:var(--mono);
+    font-size:13px;
+    color:var(--steel);
+    margin-bottom:18px;
+  }
+  .hero h1{
+    font-size:clamp(40px, 6vw, 62px);
+    line-height:1.06;
+    margin-bottom:22px;
+    background:linear-gradient(120deg, var(--ink) 55%, var(--brass) 130%);
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+  }
+  .hero p.sub{
+    max-width:52ch;
+    color:var(--ink-soft);
+    font-size:17px;
+    margin-bottom:34px;
+  }
+  .btn-row{ display:flex; gap:14px; flex-wrap:wrap; }
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    padding:12px 22px;
+    font-size:14px;
+    text-decoration:none;
+    border-radius:var(--radius);
+    border:1px solid var(--ink);
+  }
+  .btn.primary{ background:var(--ink); color:var(--paper); }
+  .btn.primary:hover{ background:var(--steel-deep); border-color:var(--steel-deep); }
+  .btn.ghost{ color:var(--ink); }
+  .btn.ghost:hover{ background:var(--card); }
+
+  /* ledger card in hero */
+  .ledger{
+    background:var(--card);
+    border:1px solid var(--paper-line);
+    border-radius:8px;
+    padding:22px 24px;
+    font-family:var(--mono);
+    font-size:13px;
+    box-shadow:0 1px 0 rgba(255,255,255,0.03) inset, 0 20px 44px -20px rgba(0,0,0,0.6);
+  }
+  .ledger-title{
+    font-family:var(--sans);
+    font-size:12px;
+    color:var(--ink-soft);
+    margin-bottom:16px;
+    padding-bottom:12px;
+    border-bottom:1px dashed var(--paper-line);
+  }
+  .ledger-row{
+    display:flex;
+    justify-content:space-between;
+    padding:8px 0;
+    border-bottom:1px dashed var(--paper-line);
+    gap:12px;
+  }
+  .ledger-row:last-child{ border-bottom:none; }
+  .ledger-row span:first-child{ color:var(--ink-soft); }
+  .ledger-row span:last-child{ text-align:right; color:var(--ink); }
+
+  /* ---------- quote ---------- */
+  .quote-section{
+    padding:52px 44px;
+    margin:56px 0;
+    background:var(--card);
+    border:1px solid var(--paper-line);
+    border-radius:10px;
+    box-shadow:0 1px 0 rgba(255,255,255,0.03) inset, 0 24px 48px -24px rgba(0,0,0,0.55);
+  }
+  blockquote{
+    margin:0;
+    font-family:var(--serif);
+    font-style:italic;
+    font-size:clamp(21px, 2.6vw, 27px);
+    line-height:1.5;
+    color:var(--ink);
+    border-left:2px solid var(--brass);
+    padding-left:28px;
+  }
+  .quote-sign{
+    display:block;
+    margin-top:22px;
+    font-family:var(--mono);
+    font-size:13px;
+    color:var(--steel);
+    font-style:normal;
+  }
+
+  /* ---------- about ---------- */
+  .about-grid{
+    display:grid;
+    grid-template-columns:1.4fr 1fr;
+    gap:56px;
+  }
+  .about-grid p{ color:var(--ink-soft); margin:0 0 18px; max-width:56ch; }
+  .about-grid p:last-child{ margin-bottom:0; }
+
+  .skills{
+    display:flex;
+    flex-wrap:wrap;
+    gap:9px;
+    margin-top:28px;
+  }
+  .skill-tag{
+    font-family:var(--mono);
+    font-size:12px;
+    padding:6px 12px;
+    border:1px solid var(--paper-line);
+    border-radius:20px;
+    color:var(--ink-soft);
+    background:var(--card);
+  }
+
+  .contact-box{
+    border:1px solid var(--paper-line);
+    border-radius:8px;
+    padding:24px;
+    background:var(--card);
+    height:fit-content;
+    box-shadow:0 1px 0 rgba(255,255,255,0.03) inset, 0 20px 44px -20px rgba(0,0,0,0.6);
+  }
+  .contact-box h3{
+    font-size:16px;
+    margin-bottom:18px;
+    font-family:var(--sans);
+    font-weight:600;
+  }
+  .contact-line{
+    display:flex;
+    flex-direction:column;
+    gap:2px;
+    padding:12px 0;
+    border-top:1px solid var(--paper-line);
+  }
+  .contact-line:first-of-type{ border-top:none; padding-top:0; }
+  .contact-line .label{ font-size:12px; color:var(--ink-soft); font-family:var(--mono); }
+  .contact-line .value{ font-size:14.5px; overflow-wrap:break-word; }
+
+  /* ---------- education & experience ---------- */
+  .entry{
+    display:grid;
+    grid-template-columns:120px 1fr;
+    gap:24px;
+    padding:26px 0;
+    border-top:1px solid var(--paper-line);
+  }
+  .entry:first-of-type{ border-top:none; padding-top:0; }
+  .entry-date{
+    font-family:var(--mono);
+    font-size:13px;
+    color:var(--steel);
+    padding-top:3px;
+  }
+  .entry-role{
+    font-size:18px;
+    font-weight:600;
+    margin-bottom:2px;
+  }
+  .entry-org{
+    font-size:14.5px;
+    color:var(--ink-soft);
+    margin-bottom:12px;
+  }
+  .entry ul{
+    margin:0;
+    padding-left:18px;
+    color:var(--ink-soft);
+    font-size:14.5px;
+  }
+  .entry ul li{ margin-bottom:7px; }
+  .entry ul li:last-child{ margin-bottom:0; }
+
+  /* ---------- projects ---------- */
+  .proj-list{ display:flex; flex-direction:column; }
+  .proj{
+    padding:26px 0;
+    border-top:1px solid var(--paper-line);
+    display:grid;
+    grid-template-columns:1fr auto;
+    gap:8px 20px;
+    align-items:baseline;
+  }
+  .proj:first-child{ border-top:none; padding-top:0; }
+  .proj-name{ font-size:19px; font-weight:600; }
+  .proj-status{
+    font-family:var(--mono);
+    font-size:12px;
+    color:var(--brass);
+    white-space:nowrap;
+  }
+  .proj-role{
+    font-size:13px;
+    color:var(--ink-soft);
+    grid-column:1 / -1;
+    margin-top:-4px;
+  }
+  .proj-desc{
+    grid-column:1 / -1;
+    color:var(--ink-soft);
+    font-size:14.5px;
+    max-width:62ch;
+  }
+
+  /* ---------- achievements ---------- */
+  .ach-grid{
+    display:grid;
+    grid-template-columns:repeat(2, 1fr);
+    gap:1px;
+    background:var(--paper-line);
+    border:1px solid var(--paper-line);
+  }
+  .ach-item{
+    background:var(--card);
+    padding:22px;
+    font-size:14.5px;
+  }
+
+  /* ---------- speaking ---------- */
+  .speak-entry{
+    padding:24px 0;
+    border-top:1px solid var(--paper-line);
+  }
+  .speak-entry:first-of-type{ border-top:none; padding-top:0; }
+  .speak-entry h3{
+    font-size:17px;
+    font-weight:600;
+    font-family:var(--sans);
+    margin-bottom:8px;
+  }
+  .speak-entry p{
+    color:var(--ink-soft);
+    font-size:14.5px;
+    margin:0;
+    max-width:60ch;
+  }
+
+  /* ---------- footer ---------- */
+  footer{
+    padding:56px 0 48px;
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    flex-wrap:wrap;
+    gap:18px;
+  }
+  footer .fname{
+    font-family:var(--serif);
+    font-size:22px;
+  }
+  footer .fsub{
+    font-size:13px;
+    color:var(--ink-soft);
+    margin-top:4px;
+  }
+  footer .fcopy{
+    font-family:var(--mono);
+    font-size:12px;
+    color:var(--ink-soft);
+    text-align:right;
+  }
+
+  /* ---------- responsive ---------- */
+  @media (max-width: 980px){
+    .hero-grid{ grid-template-columns:1fr 320px; gap:32px; }
+  }
+
+  @media (max-width: 760px){
+    .wrap{ padding:0 22px; }
+    section{ padding:60px 0; }
+    .hero{ padding:56px 0 56px; }
+    .hero-grid{ grid-template-columns:1fr; gap:32px; }
+    .about-grid{ grid-template-columns:1fr; gap:32px; }
+    .entry{ grid-template-columns:1fr; gap:6px; }
+    .entry-date{ padding-top:0; }
+    .ach-grid{ grid-template-columns:1fr; }
+    .proj{ grid-template-columns:1fr; gap:4px; }
+    .proj-status{ order:2; }
+    .quote-section{ padding:36px 24px; margin:40px 0; }
+    nav.links{
+      display:none;
+      position:absolute;
+      top:100%;
+      left:0;
+      right:0;
+      background:var(--paper);
+      flex-direction:column;
+      padding:18px 28px 24px;
+      border-bottom:1px solid var(--paper-line);
+      gap:16px;
+    }
+    nav.links.open{ display:flex; }
+    .nav-toggle{ display:flex; align-items:center; justify-content:center; }
+    footer{ flex-direction:column; align-items:flex-start; }
+    footer .fcopy{ text-align:left; }
+  }
+
+  @media (max-width: 420px){
+    .wrap{ padding:0 18px; }
+    .nav-inner{ padding:16px 18px; }
+    section{ padding:48px 0; }
+    .hero{ padding:44px 0 44px; }
+    .hero p.sub{ font-size:15.5px; }
+    .btn{ padding:11px 18px; font-size:13.5px; }
+    .ledger{ padding:18px 18px; font-size:12px; }
+    .ledger-row{ flex-wrap:wrap; row-gap:2px; }
+    .ledger-row span:last-child{ text-align:left; }
+    blockquote{ font-size:19px; padding-left:20px; }
+    .quote-section{ padding:28px 18px; }
+    .ach-item{ padding:18px; font-size:14px; }
+    .entry-role{ font-size:16.5px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="nav-inner">
+    <div class="logo">KT</div>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">≡</button>
+    <nav class="links" id="navLinks">
+      <a href="#about">About</a>
+      <a href="#experience">Experience</a>
+      <a href="#projects">Projects</a>
+      <a href="#achievements">Achievements</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="tagline">Portfolio · 2025</div>
+    <div class="hero-grid">
+      <div>
+        <h1>Krrish Thakur</h1>
+        <p class="sub">Aspiring entrepreneur &amp; early-stage operator. I work on real problems, take ownership early, and think from first principles.</p>
+        <div class="btn-row">
+          <a href="#projects" class="btn primary">View Projects</a>
+          <a href="#contact" class="btn ghost">Get in Touch</a>
+        </div>
+      </div>
+      <div class="ledger">
+        <div class="ledger-title">Current standing</div>
+        <div class="ledger-row"><span>Status</span><span>Building, pre-launch</span></div>
+        <div class="ledger-row"><span>Program</span><span>Dual Degree: IIM Bangalore &amp; SIES</span></div>
+        <div class="ledger-row"><span>Graduating</span><span>2028</span></div>
+        <div class="ledger-row"><span>Operating stack</span><span>Ownership, first principles</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUOTE -->
+  <section class="quote-section">
+    <blockquote>
+      "I have already started behaving like a founder, just without the balance sheet yet. I prioritize truth over vanity, whether that means pausing a project to rethink market fit or learning high-trust negotiation in Surat's wholesale markets."
+      <span class="quote-sign">— Founder Intent</span>
+    </blockquote>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="section-head">
+      <h2>Who I Am</h2>
+      <span class="section-num">About Me</span>
+    </div>
+    <div class="about-grid">
+      <div>
+        <p>Entrepreneur-in-making who enjoys working on real problems and taking responsibility early. My background spans student leadership, startup iteration, and hands-on exposure to my family business. I prefer learning by doing and thinking from first principles.</p>
+        <p>Currently pursuing a BBA + Dual Degree in Digital Business at SIES Navi Mumbai in collaboration with IIM Bangalore (DBE), graduating in 2026.</p>
+        <div class="skills">
+          <span class="skill-tag">Problem Solving</span>
+          <span class="skill-tag">Taking Ownership</span>
+          <span class="skill-tag">Clear Communication</span>
+          <span class="skill-tag">Uncertain Environments</span>
+          <span class="skill-tag">MS Excel</span>
+          <span class="skill-tag">Data Handling</span>
+        </div>
+      </div>
+      <div class="contact-box" id="contact">
+        <h3>Get in Touch</h3>
+        <div class="contact-line">
+          <span class="label">Phone</span>
+          <span class="value">+91 98706 60007</span>
+        </div>
+        <div class="contact-line">
+          <span class="label">Email</span>
+          <span class="value">thakurkrrish2004@gmail.com</span>
+        </div>
+        <div class="contact-line">
+          <span class="label">LinkedIn</span>
+          <span class="value">linkedin.com/in/krrishthakur</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section>
+    <div class="section-head">
+      <h2>Academic Background</h2>
+      <span class="section-num">Education</span>
+    </div>
+    <div class="entry">
+      <div class="entry-date">2023 — 2026</div>
+      <div>
+        <div class="entry-role">BBA + Dual Degree in Digital Business (Ongoing)</div>
+        <div class="entry-org">SIES Navi Mumbai + IIM Bangalore (DBE)</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <div class="section-head">
+      <h2>Where I've Operated</h2>
+      <span class="section-num">Leadership &amp; Experience</span>
+    </div>
+
+    <div class="entry">
+      <div class="entry-date">2025 — Present</div>
+      <div>
+        <div class="entry-role">Senior Director</div>
+        <div class="entry-org">Futurepreneurs Club</div>
+        <ul>
+          <li>Promoted from execution member to Senior Director for demonstrating consistent grit.</li>
+          <li>Planned and executed key events: Session with Uday Wankawala, Run For A Cause, and Startup Street.</li>
+          <li>Managed registrations, logistics, décor, speaker coordination, and on-ground management.</li>
+          <li>Coordinated with BNI officials, supported stall owners, and managed large crowd flows.</li>
+          <li>Handled data collection and Excel-based reporting for official club documentation.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="entry-date">2020 — Present</div>
+      <div>
+        <div class="entry-role">Practical Business Exposure</div>
+        <div class="entry-org">Family Saree Wholesale Business</div>
+        <ul>
+          <li>Learned business fundamentals: pricing, negotiation, credit cycles, and supplier relationships.</li>
+          <li>Observed how trust and long-term reputation drive trade in traditional high-volume markets.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="entry-date">2025 — Present</div>
+      <div>
+        <div class="entry-role">Class Representative</div>
+        <div class="entry-org">SIES Navi Mumbai</div>
+        <ul>
+          <li>Acting as the bridge between high-performance students and faculty.</li>
+          <li>Coordinating academic communication and resolving operational class-level issues.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="section-head">
+      <h2>What I've Built</h2>
+      <span class="section-num">Startup &amp; Projects</span>
+    </div>
+    <div class="proj-list">
+      <div class="proj">
+        <span class="proj-name">Birbal — AI SaaS</span>
+        <span class="proj-status">Active · Pre-Launch</span>
+        <span class="proj-role">Co-Founder</span>
+        <p class="proj-desc">Working on idea validation, positioning, and early go-to-market for a tool focused on project clarity.</p>
+      </div>
+      <div class="proj">
+        <span class="proj-name">Uplyft</span>
+        <span class="proj-status">Paused</span>
+        <span class="proj-role">Early-stage idea development</span>
+        <p class="proj-desc">Intentionally paused to rethink market fit and priorities rather than chasing vanity metrics.</p>
+      </div>
+      <div class="proj">
+        <span class="proj-name">Green Syndicate</span>
+        <span class="proj-status">Research</span>
+        <span class="proj-role"></span>
+        <p class="proj-desc">Studying CSR compliance, sustainability reporting, and carbon-credit systems within the Indian SME ecosystem.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ACHIEVEMENTS -->
+  <section id="achievements">
+    <div class="section-head">
+      <h2>Recognition &amp; Certifications</h2>
+      <span class="section-num">Signal &amp; Certs</span>
+    </div>
+    <div class="ach-grid">
+      <div class="ach-item">Leadership Training — Happy Minds</div>
+      <div class="ach-item">Microsoft Excel — Data Handling</div>
+      <div class="ach-item">Global Library Champion of Year</div>
+      <div class="ach-item">Youngest Entrepreneur Recognition</div>
+      <div class="ach-item">Academic Excellence Quiz Champ</div>
+    </div>
+  </section>
+
+  <!-- SPEAKING -->
+  <section>
+    <div class="section-head">
+      <h2>How I Show Up Publicly</h2>
+      <span class="section-num">Speaking &amp; Thought Leadership</span>
+    </div>
+    <div class="speak-entry">
+      <h3>TEDx Surat — Volunteering</h3>
+      <p>Prepared selection videos: "My Superpower: What Makes Me Unique" &amp; "What Equality Means to Me."</p>
+    </div>
+    <div class="speak-entry">
+      <h3>Community Engagement</h3>
+      <p>Spoke at various Jain programs on discipline and ethics. Represented students at Children's Parliament.</p>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div>
+      <div class="fname">Krrish Thakur</div>
+      <div class="fsub">Aspiring Entrepreneur · Early-Stage Operator</div>
+    </div>
+    <div class="fcopy">© 2026 · Built with HTML &amp; CSS</div>
+  </footer>
+
+</main>
+
+<script>
+  const toggle = document.getElementById('navToggle');
+  const links = document.getElementById('navLinks');
+  toggle.addEventListener('click', () => {
+    const isOpen = links.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', isOpen);
+  });
+  links.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+      links.classList.remove('open');
+      toggle.setAttribute('aria-expanded', 'false');
+    });
+  });
+</script>
+
+</body>
+</html>
